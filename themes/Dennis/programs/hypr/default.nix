@@ -5,8 +5,6 @@
     ./hyprland-environment.nix
   ];
 
- 
-
   #test later systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -20,13 +18,8 @@
         force_zero_scaling = true
     }
 
-    # Fix slow startup (Might be outedet I will check latter)
-    #exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    #exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
-
     # Autostart
-
-    exec-once = hyprctl setcursor Bibata-Modern-Classic 24
+    # exec-once = hyprctl setcursor Bibata-Modern-Classic 24
 
     exec = pkill waybar & sleep 0.5 && waybar
     exec-once = swww init & sleep 0.5 && exec wallpaper_random

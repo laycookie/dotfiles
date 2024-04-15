@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 {
-	imports = [ ../themes/Dennis ];
-
 	home = {
 		username = "Dennis";
 		homeDirectory = "/home/Dennis";
@@ -14,10 +12,10 @@
 	nixpkgs.config.allowUnfree = true;
 
 	home.packages = (with pkgs; [
+		# GUI
 		webcord-vencord
 		telegram-desktop
 		obs-studio
-		jetbrains.webstorm
 		mpv
 		libsForQt5.gwenview
 		brave
@@ -30,6 +28,9 @@
 		pavucontrol
 		ark
 
+		# CLI
+		neofetch
+		onefetch
 		bat
 		zoxide
 		speedtest-rs
@@ -43,8 +44,12 @@
 		yt-dlp
 		brightnessctl
 
+		# Themes
 		yaru-theme
 		bibata-cursors
 		tokyo-night-gtk
+
+		hyprcursor
 	]);
+	imports = [ ../themes/Dennis ];
 }

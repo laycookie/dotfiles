@@ -9,14 +9,10 @@
   ];
   environment.systemPackages = with pkgs; [
     # Neovim Deps
-    nodejs_21
-    lua-language-server
-    python311
     git
     kitty
     neovim
     wget
-    python311Packages.pip
     du-dust
     btop
     usbutils
@@ -24,7 +20,6 @@
     lm_sensors
     zellij
     zsh
-    neofetch
 
     waybar
   ];

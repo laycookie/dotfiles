@@ -23,6 +23,12 @@
       fsType = "vfat";
     };
 
+    fileSystems."/steam" = 
+    {
+	device = "/dev/sda2";
+	fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/254ddefc-34f6-4182-9cfd-c1bb3032fcb9"; }
     ];

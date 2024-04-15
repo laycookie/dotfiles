@@ -1,3 +1,4 @@
+-- Vim
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- telescope
 local builtin = require('telescope.builtin')
@@ -24,13 +25,23 @@ end)
 vim.keymap.set('n', '<leader>ce', function() 
 	vim.cmd.RustLsp('explainError')
 end)
-vim.keymap.set('n', '<leader>cd', function() 
+vim.keymap.set('n', '<leader>d', function() 
 	vim.cmd.RustLsp('renderDiagnostic')
 end)
 vim.keymap.set('n', '<leader>ca', function()
 	vim.cmd.RustLsp('codeAction')
 end)
+vim.keymap.set('n', '<leader>cd', function()
+	vim.cmd.RustLsp('openDocs')
+end)
 -- DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<leader>br', vim.cmd.DapToggleBreakpoint)
 vim.keymap.set('n', '<leader>bs', vim.cmd.DapStepOver)
-
+-- harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+for i=1,9 do
+	vim.keymap.set("n", "<leader>" .. tostring(i), function() harpoon:list():select(i) end)
+end
