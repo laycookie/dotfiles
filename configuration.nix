@@ -18,28 +18,28 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./common/common_pkgs.nix
-      ./common/wayland.nix
-      ./common/users.nix
-      ./common/configs/fonts.nix
+	./hardware-configuration.nix
+	./common/common_pkgs.nix
+ 	./common/wayland.nix
+	./common/users.nix
+	./common/configs/fonts.nix
     ];
 
-  home-manager.extraSpecialArgs = { inherit inputs; };
-  home-manager.useGlobalPkgs = true;
+	home-manager.extraSpecialArgs = { inherit inputs; };
+	home-manager.useGlobalPkgs = true;
 
-  # Allow unfree software
-  nixpkgs.config.allowUnfree = true;
+	# Allow unfree software
+	nixpkgs.config.allowUnfree = true;
 
 	nixpkgs.overlays =  [
 		inputs.neovim-nightly-overlay.overlay
 	];
 
-  # bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
+	# bootloader.
+	boot.loader = {
+		systemd-boot.enable = true;
+		efi.canTouchEfiVariables = true;
+	};
 
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
@@ -49,11 +49,6 @@ in
     BROWSER = "brave";
     TERMINAL = "kitty";
     TERM = "kitty";
-
-    HYPRCURSOR_THEME="Bibata-Modern-Classic";
-    HYPRCURSOR_SIZE="24";
-    XCURSOR_THEME="Bibata-Modern-Classic";
-    XCURSOR_SIZE="24";
   };
 
   # Enable OpenGL
@@ -84,6 +79,9 @@ in
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+
   # swaylock stuff
   security.pam.services.swaylock = {};
 
@@ -96,9 +94,6 @@ in
 	jack.enable = true;
   };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  
   # services.xserver.displayManager.sddm = {
   #  enable = true;
   #  enableHidpi = true;

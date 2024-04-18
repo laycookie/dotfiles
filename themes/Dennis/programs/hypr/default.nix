@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [ 
@@ -8,6 +8,7 @@
   #test later systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     extraConfig = ''
     # Monitor
@@ -20,6 +21,7 @@
 
     # Autostart
     # exec-once = hyprctl setcursor Bibata-Modern-Classic 24
+    misc:enable_hyprcursor = false
 
     exec = pkill waybar & sleep 0.5 && waybar
     exec-once = swww init & sleep 0.5 && exec wallpaper_random

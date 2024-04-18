@@ -15,6 +15,7 @@
 		# GUI
 		webcord-vencord
 		telegram-desktop
+		signal-desktop
 		obs-studio
 		mpv
 		libsForQt5.gwenview
@@ -48,8 +49,6 @@
 		yaru-theme
 		bibata-cursors
 		tokyo-night-gtk
-
-		hyprcursor
 	]);
 	imports = [ ../themes/Dennis ];
 }

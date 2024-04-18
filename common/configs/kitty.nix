@@ -2,18 +2,6 @@
 with colors; {
   programs.kitty = {
     enable = true;
-    # settings = {
-    # 	font_family = "Fira Code Regular Nerd Font Complete Mono";
-    # 	italic_font = "auto";
-    # 	bold_font = "auto";
-    # 	bold_italic_font = "auto";
-    # 	font_size = "10";
-	  #   " enable_audio_bell" = "no";
-	  #   background_opaciy = "0.75";
-	  #   " background_tint" = "0.7";
-	  #   " dim_opacity" = "0.75";
-    # 	shell = "zsh";
-    # };
     extraConfig=''
 						font_family      Dank Mono Regular
 						bold_font        Fira Code Bold Nerd Font Complete

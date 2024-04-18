@@ -17,9 +17,9 @@
       package = pkgs.tokyo-night-gtk;
     };
 
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-    };
+    #cursorTheme = {
+    #  name = "Bibata-Modern-Classic";
+    #  package = pkgs.bibata-cursors;
+    #};
   };
 }
