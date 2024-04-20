@@ -17,6 +17,7 @@
 		telegram-desktop
 		signal-desktop
 		obs-studio
+		obsidian
 		mpv
 		libsForQt5.gwenview
 		brave

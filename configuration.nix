@@ -41,58 +41,73 @@ in
 		efi.canTouchEfiVariables = true;
 	};
 
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
-  environment.variables = {
-    EDITOR = "nvim";
-    SUDO_EDITOR="nvim";
-    BROWSER = "brave";
-    TERMINAL = "kitty";
-    TERM = "kitty";
-  };
+	environment.variables = {
+  	  EDITOR = "nvim";
+  	  SUDO_EDITOR="nvim";
+  	  BROWSER = "brave";
+  	  TERMINAL = "kitty";
+  	  TERM = "kitty";
+  	};
 
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  	# Enable OpenGL
+  	hardware.opengl = {
+  	  enable = true;
+  	  driSupport = true;
+  	  driSupport32Bit = true;
+  	};
 
-  # Nvidia support
-  services.xserver.videoDrivers = [ "nvidia" ];
+  	# Nvidia support
+  	services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  hardware.bluetooth.enable = true;
+  	hardware.nvidia = {
+  	  modesetting.enable = true;
+  	  powerManagement.enable = true;
+  	  powerManagement.finegrained = false;
+  	  open = false;
+  	  nvidiaSettings = true;
+  	  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  	};
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  	# networking.hostName = "nixos"; # Define your hostname.
+  	# Pick only one of the below networking options.
+  	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  	networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default
+  	
+	hardware.bluetooth = {
+		enable = true;
+		settings = {
+			General = {
+				Name = "Bluetooth_WOW";
+				ControllerMode = "dual";
+				FastConnectable = "true";
+				Experimental = "true";
+			};
+			Policy = {
+				AutoEnable = "true";
+			};
+		};
+	};
+	hardware.enableAllFirmware = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  	# Enable the X11 windowing system.
+  	services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  	# Enable the GNOME Desktop Environment.
+  	services.xserver.displayManager.gdm.enable = true;
 
-  # swaylock stuff
-  security.pam.services.swaylock = {};
+  	# swaylock stuff
+  	security.pam.services.swaylock = {};
 
-  # enable pipewire
-  security.rtkit.enable = true;
-  services.pipewire = {
-	enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
-	jack.enable = true;
-  };
+  	# enable pipewire
+  	security.rtkit.enable = true;
+  	services.pipewire = {
+  	      enable = true;
+  	      alsa.support32Bit = true;
+  	      pulse.enable = true;
+  	      jack.enable = true;
+  	};
 
   # services.xserver.displayManager.sddm = {
   #  enable = true;
