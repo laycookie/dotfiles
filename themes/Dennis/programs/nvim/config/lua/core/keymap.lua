@@ -1,11 +1,14 @@
 -- Vim
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("i", "jj", "<ESC>")
 -- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 -- undotree
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+-- Cloak
+vim.keymap.set('n', '<leader>ct', vim.cmd.CloakToggle)
 -- LSP zero
 local lsp = require('lsp-zero')
 local cmp = require('cmp')
@@ -18,8 +21,8 @@ local cmp_mapping = lsp.defaults.cmp_mappings({
 
 
 vim.keymap.set('n', '<leader>h', function()
-	local current_setting = vim.lsp.inlay_hint.is_enabled(0)
-        vim.lsp.inlay_hint.enable(0, not current_setting)
+	local current_setting = vim.lsp.inlay_hint.is_enabled()
+        vim.lsp.inlay_hint.enable(not current_setting)
 end)
 -- Rustaceanvim
 vim.keymap.set('n', '<leader>ce', function() 

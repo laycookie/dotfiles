@@ -11,6 +11,9 @@
 
 	nixpkgs.config.allowUnfree = true;
 
+  home.sessionVariables = {
+	"QT_STYLE_OVERRIDE"="kvantum";
+  };
 	home.packages = (with pkgs; [
 		# GUI
 		webcord-vencord
@@ -21,20 +24,27 @@
 		mpv
 		libsForQt5.gwenview
 		brave
-		steam
+		thunderbird
 		gparted
+		gnome.nautilus
+		libsForQt5.qtstyleplugin-kvantum
 		libsForQt5.dolphin
 		rofi-wayland
 		wlogout
 		helvum
 		pavucontrol
-		ark
+		gnome.file-roller
+		steam
+		blender
+		qbittorrent
+		localsend
 
 		# CLI
 		neofetch
 		onefetch
 		bat
 		zoxide
+		fzf
 		speedtest-rs
 		swaylock
 		swaynotificationcenter
@@ -47,9 +57,9 @@
 		brightnessctl
 
 		# Themes
-		yaru-theme
 		bibata-cursors
-		tokyo-night-gtk
 	]);
+
+
 	imports = [ ../themes/Dennis ];
 }

@@ -9,7 +9,7 @@
       };
       style = ''
                * {
-                 font-family: "JetBrainsMono Nerd Font";
+                 font-family: "${config.stylix.fonts.monospace.name}";
                  font-size: 12pt;
                  font-weight: bold;
                  border-radius: 8px;
@@ -29,7 +29,7 @@
                  animation-iteration-count: infinite;
                  animation-direction: alternate;
                }
-               window#waybar {
+               window#waybar config.stylix.fonts.monospace.name{
                  background-color: transparent;
                }
                window > box {
@@ -181,7 +181,7 @@
         };
         "clock" = {
           "interval" = 1;
-          "format" = "{:%I:%M %p  %A %b %d}";
+          "format" = "{:%I:%M:%S %p  %A %b %d}";
           "tooltip" = true;
           "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
         };

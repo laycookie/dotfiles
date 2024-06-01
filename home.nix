@@ -8,8 +8,6 @@
 	home = {
 		username = "Dennis";
 		homeDirectory = "/home/Dennis";
-		#pointerCursor.name = "Bibata-Modern-Classic";
-		#pointerCursor.package = pkgs.bibata-cursors;
 	};
 	nixpkgs = {
   		config.allowUnfree = true;

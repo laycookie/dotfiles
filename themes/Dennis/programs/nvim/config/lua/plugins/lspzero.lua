@@ -31,6 +31,7 @@ return {
 	'tsserver',
 	'eslint',
 	'lua_ls',
+	'pylsp',
       })
 
       lsp.format_on_save({

@@ -8,9 +8,7 @@
     })
   ];
   environment.systemPackages = with pkgs; [
-    # Neovim Deps
     git
-    kitty
     neovim
     wget
     du-dust

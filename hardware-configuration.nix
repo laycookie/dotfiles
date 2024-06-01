@@ -21,12 +21,12 @@
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/72E7-3B96";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
-    fileSystems."/steam" = 
-    {
-	device = "/dev/sda2";
-	fsType = "ext4";
+  fileSystems."/disk2" =
+    { device = "/dev/disk/by-uuid/32d80224-da99-40aa-8f98-ee4555013038";
+      fsType = "btrfs";
     };
 
   swapDevices =

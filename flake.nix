@@ -8,7 +8,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    stylix.url = "github:danth/stylix";
+    schizofox.url = "github:schizofox/schizofox";
+    firefox-addons = {
+    	url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
@@ -24,6 +29,7 @@
           modules = [ 
             ./configuration.nix
             inputs.home-manager.nixosModules.default
+	    inputs.stylix.nixosModules.stylix
           ];
         };
 

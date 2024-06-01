@@ -10,5 +10,8 @@
     ./zoxide
     ./mpd
     ./nvim
+    ./eww
+    ./firefox
+    ./schizofox
   ];
 }

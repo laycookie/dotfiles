@@ -1,135 +1,122 @@
+* {
+    main-bg:            #${config.stylix.base16Scheme.base00};
+    main-fg:            #cdd6f4ff;
+    main-br:            #cba6f7ff;
+    main-ex:            #f5e0dcff;
+    select-bg:          #b4befeff;
+    select-fg:          #11111bff;
+    separatorcolor:     transparent;
+    border-color:       transparent;
+}
 
 // Config //
 configuration {
     modi:                        "drun,filebrowser,window,run";
     show-icons:                  true;
-    display-drun:                "";
-    display-run:                 "";
-    display-filebrowser:         "";
-    display-window:              "";
+    display-drun:                " ";
+    display-run:                 " ";
+    display-filebrowser:         " ";
+    display-window:              " ";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
-  
-  icon-theme:                  "Tela-circle-dracula";
-}
-
-// @theme "./colors/dracula.rasi"
-* {
-    main-bg:            #dce0e8e6;
-    main-fg:            #4c4f69ff;
-    main-br:            #9ca0b0ff;
-    main-ex:            #8839efff;
-    select-bg:          #dd7878ff;
-    select-fg:          #eff1f5ff;
-    separatorcolor:     transparent;
-    border-color:       transparent;
+    icon-theme:                  "Tela-circle-dracula";
 }
 
 // Main //
 window {
-    height:                      590px;
-    width:                       1140px;
+    height:                      40em;
+    width:                       25em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
-    spacing:                     0px;
-    padding:                     0px;
-    border:                      2px;
-    border-radius:               40px;
+    spacing:                     0em;
+    padding:                     0em;
+    border-radius:               1em 1em 1em 1em;
     border-color:                @main-br;
-    background-color:            transparent;
+    background-color:            @main-bg;
 }
 mainbox {
     enabled:                     true;
-    spacing:                     0px;
-    orientation:                 horizontal;
-    children:                    [  "inputbar" , "listbox" ];
+    spacing:                     0em;
+    padding:                     1em;
+    orientation:                 vertical;
+    children:                    [ "inputbar" , "listbox" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
 }
+
 
 // Inputs //
 inputbar {
     enabled:                     true;
-    width:                       640px;
-    children:                    [ "mode-switcher" , "entry" ];
-    background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", height);
+    spacing:                     0em;
+    padding:                     4em;
+    children:                    [ "entry" ];
+    background-color:            @main-bg;
+    background-image:            url("~/.cache/hyde/wall.thmb", width); // TODO: IMPORT WALLPAPER
+    border-radius:               1em 1em 0em 0em;
 }
 entry {
     enabled:                     false;
 }
 
 
-// Modes //
-mode-switcher{
-    orientation:                 vertical;
-    enabled:                     true;
-    spacing:                     0px;
-    width:                       68px;
-    padding:                     160px 10px 160px 10px;
-    spacing:                     25px;
-    background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
-}
-button {
-    cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.45;
-    border-radius:               50px;
-    background-color:            @main-bg;
-    text-color:                  @main-fg;
-}
-button selected {
-    background-color:            @main-fg;
-    text-color:                  @main-bg;
-}
-
 // Lists //
 listbox {
-    spacing:                     10px;
-    padding:                     30px;
-    children:                    [ "listview" ];
+    spacing:                     0em;
+    padding:                     0em;
+    children:                    [ "dummyt" , "listview" , "dummyb" ];
     background-color:            @main-bg;
+    border-radius:               0em 0em 1em 1em;
 }
 listview {
     enabled:                     true;
+    spacing:                     0.4em;
+    padding:                     1em;
     columns:                     1;
+    lines:                       10;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
+    expand:                      false;
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
-    background-color:            transparent;
+    background-color:            @main-bg;
     text-color:                  @main-fg;
 }
+dummyt {
+    spacing:                     0em;
+    padding:                     0em;
+    background-color:            @main-bg;
+}
+dummyb {
+    spacing:                     0em;
+    padding:                     0em;
+    background-color:            @main-bg;
+    border-radius:               0em 0em 1em 1em;
+}
+
 
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     30px;
-    padding:                     8px;
-    border-radius:               20px;
+    spacing:                     1em;
+    padding:                     0.2em 0.2em 0.2em 1.5em;
+    border-radius:               1em 1em 1em 1em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
-}
-@media(max-aspect-ratio: 1.8) {
-    element {
-        orientation:             vertical;
-    }
 }
 element selected.normal {
     background-color:            @select-bg;
     text-color:                  @select-fg;
 }
 element-icon {
-    size:                        48px;
+    size:                        2em;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
@@ -141,4 +128,3 @@ element-text {
     background-color:            transparent;
     text-color:                  inherit;
 }
-

@@ -1,25 +1,58 @@
 {config, lib, pkgs, ... }:
 {
   imports = [
+    ./vm.nix
     ./programs
     ./scripts
     ./cava
   ];
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Yaru-magenta-dark";
-      package = pkgs.yaru-theme;
-    };
+ stylix = {
+	image = ./wallpapers/rofi.png;
 
-    theme = {
-      name = "Tokyonight-Dark-B-LB";
-      package = pkgs.tokyo-night-gtk;
-    };
+	targets.rofi.enable = false;
+	targets.waybar.enable = false;
 
-    #cursorTheme = {
-    #  name = "Bibata-Modern-Classic";
-    #  package = pkgs.bibata-cursors;
-    #};
-  };
+ 	polarity = "dark";
+	base16Scheme = {
+		base00 = "282828";
+		base01 = "3c3836";
+		base02 = "504945";
+		base03 = "665c54";
+		base04 = "bdae93";
+		base05 = "d5c4a1";
+		base06 = "ebdbb2";
+		base07 = "fbf1c7";
+		base08 = "fb4934";
+		base09 = "fe8019";
+		base0A = "fabd2f";
+		base0B = "b8bb26";
+		base0C = "8ec07c";
+		base0D = "83a598";
+		base0E = "d3869b";
+		base0F = "d65d0e";
+	};
+	cursor = {
+		package = pkgs.bibata-cursors;
+		name = "Bibata-Modern-Classic";
+		size = 24;
+	};
+	fonts = {
+		sizes = {
+			terminal = 14;
+		};
+
+		monospace = {
+			package = pkgs.nerdfonts.override { fonts = ["JetBrainsMono"]; };
+			name = "JetBrainsMono Nerd Font Mono";
+		};
+		sansSerif = {
+			package = pkgs.dejavu_fonts;
+			name = "DejaVu Sans";
+		};
+		serif = {
+			package = pkgs.dejavu_fonts;
+			name = "DejaVu Serif";
+		};
+	};
+};
 }

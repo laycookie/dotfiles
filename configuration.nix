@@ -24,16 +24,22 @@ in
 	./common/users.nix
 	./common/configs/fonts.nix
     ];
+	# TODO: Move to themes (Set wallpaper)
+	stylix.image = pkgs.fetchurl {
+		url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
+		sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+	};
+	stylix.polarity = "dark";
+	stylix.homeManagerIntegration.followSystem = false;
 
 	home-manager.extraSpecialArgs = { inherit inputs; };
 	home-manager.useGlobalPkgs = true;
 
 	# Allow unfree software
-	nixpkgs.config.allowUnfree = true;
-
-	nixpkgs.overlays =  [
-		inputs.neovim-nightly-overlay.overlay
-	];
+	nixpkgs.config = {
+		allowUnfree = true;
+		cudaSupport = true;
+	};
 
 	# bootloader.
 	boot.loader = {
@@ -41,7 +47,10 @@ in
 		efi.canTouchEfiVariables = true;
 	};
 
-	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+	boot.kernelParams = [ 
+	"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+	"nvidia_drm.fbdev=1"
+	];
 
 	environment.variables = {
   	  EDITOR = "nvim";
@@ -104,10 +113,26 @@ in
   	security.rtkit.enable = true;
   	services.pipewire = {
   	      enable = true;
+	      alsa.enable = true;
   	      alsa.support32Bit = true;
   	      pulse.enable = true;
   	      jack.enable = true;
   	};
+
+	# Manage the virtualisation services
+	virtualisation = {
+		libvirtd = {
+			enable = true;
+			qemu = {
+				swtpm.enable = true;
+        			ovmf.enable = true;
+        			ovmf.packages = [ pkgs.OVMFFull.fd ];
+			};
+		};
+		spiceUSBRedirection.enable = true;
+	};
+	hardware.enableRedistributableFirmware = lib.mkDefault true;
+  services.spice-vdagentd.enable = true;
 
   # services.xserver.displayManager.sddm = {
   #  enable = true;
@@ -128,10 +153,10 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Garbage coector
+  # Garbage colector
   nix.gc = {
     automatic = true;
-    dates = "weakly";
+    dates = "daily";
     options = "--delete-older-than 7d";
   };
 
