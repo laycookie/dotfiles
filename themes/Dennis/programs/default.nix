@@ -2,6 +2,8 @@
   imports = [
     ./swaync
     ./hypr
+    ./river
+    ./niri
     ./kitty
     ./rofi
     ./waybar
@@ -12,6 +14,5 @@
     ./nvim
     ./eww
     ./schizofox
-    ./TagStudio
   ];
 }

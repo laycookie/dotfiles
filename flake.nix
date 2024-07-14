@@ -6,7 +6,11 @@
 	home-manager = {
     		url = "github:nix-community/home-manager";
     	  	inputs.nixpkgs.follows = "nixpkgs";
-    	};
+    	};	
+	niri = { 
+		url = "github:sodiboo/niri-flake";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
 	hyprland = { 
     		url = "github:hyprwm/Hyprland";
 		# url = "https://github.com/hyprwm/Hyprland";
@@ -17,9 +21,8 @@
 	};
     stylix.url = "github:danth/stylix";
     schizofox.url = "github:schizofox/schizofox";
-    TagStudio.url = "github:TagStudioDev/TagStudio";
-  };
 
+  };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let

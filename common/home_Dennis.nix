@@ -1,16 +1,21 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
-	programs.steam = {
-		enable = true;
-		remotePlay.openFirewall = true;
-		dedicatedServer.openFirewall = true;
-		localNetworkGameTransfers.openFirewall = true;
 
-		gamescopeSession.enable = true;
-	};
-	programs.nix-ld.enable = true;
+	# programs.steam = {
+	# 	enable = true;
+	# 	remotePlay.openFirewall = true;
+	# 	dedicatedServer.openFirewall = true;
+	# 	localNetworkGameTransfers.openFirewall = true;
+
+	# 	gamescopeSession.enable = true;
+	# };
 
 	home-manager.users.Dennis = {
+		imports = [ 
+			./wayland.nix 
+			../themes/Dennis
+		];
+
 		home = {
 			username = "Dennis";
 			homeDirectory = "/home/Dennis";
@@ -76,8 +81,5 @@
 			# Themes
 			bibata-cursors
 		]);
-
-
-		imports = [ ../themes/Dennis ];
 	};
 }

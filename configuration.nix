@@ -20,7 +20,7 @@ in
     [ # Include the results of the hardware scan.
 	./hardware-configuration.nix
 	./common/common_pkgs.nix
- 	./common/wayland.nix
+ 	# ./common/wayland.nix
 	./common/users.nix
 	./common/configs/fonts.nix
     ];
@@ -31,23 +31,6 @@ in
 	};
 	stylix.polarity = "dark";
 	stylix.homeManagerIntegration.followSystem = false;
-
-
-#    nixpkgs.overlays = [
-#      (final: prev: {
-#        hyprland = prev.hyprland.overrideAttrs (oldAttrs: rec {
-#          version = "0.39.1";
-#          src = prev.fetchFromGitHub {
-#            owner = "hyprwm";
-#            repo = "Hyprland";
-#            rev = "v0.39.1";
-#            sha256 = "0n3z0101bmwv0vmgszhxjp37wpx5ki49fqwkbg4x95gpnvpd6yqw";
-#          };
-#        });
-#      })
-#    ];
-
-
 
 	home-manager.extraSpecialArgs = { inherit inputs; };
 	home-manager.useGlobalPkgs = true;
@@ -66,7 +49,6 @@ in
 
 	boot.kernelParams = [ 
 	"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-	"nvidia_drm.fbdev=1"
 	];
 
 	environment.variables = {
@@ -77,9 +59,9 @@ in
   	  TERM = "kitty";
   	};
 
-  	# Enable OpenGL
   	hardware.graphics = {
   	  enable = true;
+	  enable32Bit = true;
   	};
 
   	# Nvidia support
@@ -91,33 +73,23 @@ in
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers
   	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.production;
+  	  package = config.boot.kernelPackages.nvidiaPackages.stable;
   	};
+	
+	hardware.bluetooth.enable = true;
 
+	# Pick only one of the below networking options.
   	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   	networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default
   	
-	hardware.bluetooth = {
-		enable = true;
-		settings = {
-			General = {
-				Name = "Bluetooth_WOW";
-				ControllerMode = "dual";
-				FastConnectable = "true";
-				Experimental = "true";
-			};
-			Policy = {
-				AutoEnable = "true";
-			};
-		};
-	};
-	hardware.enableAllFirmware = true;
-
   	# Enable the X11 windowing system.
   	services.xserver.enable = true;
 
-  	# Enable the GNOME Desktop Environment.
+  	# Enable the GNOME/KDE Desktop Environment.
   	services.xserver.displayManager.gdm.enable = true;
+	# services.displayManager.sddm.enable = true;
+	# services.xserver.displayManager.sddm.wayland.enable = true;
+	# services.desktopManager.plasma6.enable = true;
 
   	# swaylock stuff
   	security.pam.services.swaylock = {};
@@ -133,19 +105,19 @@ in
   	};
 
 	# Manage the virtualisation services
-	virtualisation = {
-		libvirtd = {
-			enable = true;
-			qemu = {
-				swtpm.enable = true;
-        			ovmf.enable = true;
-        			ovmf.packages = [ pkgs.OVMFFull.fd ];
-			};
-		};
-		spiceUSBRedirection.enable = true;
-	};
-	hardware.enableRedistributableFirmware = lib.mkDefault true;
-  services.spice-vdagentd.enable = true;
+	# virtualisation = {
+	# 	libvirtd = {
+	# 		enable = true;
+	# 		qemu = {
+	# 			swtpm.enable = true;
+        # 			ovmf.enable = true;
+        # 			ovmf.packages = [ pkgs.OVMFFull.fd ];
+	# 		};
+	# 	};
+	# 	spiceUSBRedirection.enable = true;
+	# };
+	# hardware.enableRedistributableFirmware = lib.mkDefault true;
+  	# services.spice-vdagentd.enable = true;
 
   # services.xserver.displayManager.sddm = {
   #  enable = true;
@@ -169,7 +141,7 @@ in
   # Garbage colector
   nix.gc = {
     automatic = true;
-    dates = "daily";
+    dates = "weakly";
     options = "--delete-older-than 7d";
   };
 

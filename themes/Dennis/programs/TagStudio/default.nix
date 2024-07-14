@@ -1,4 +1,6 @@
 { config, inputs, pkgs, ...}:
 {
-	programs.TagStudio.enable = true;
+	# programs.TagStudio = {
+	# 	enable = true;
+	# };
 }

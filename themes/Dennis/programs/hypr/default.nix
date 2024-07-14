@@ -14,6 +14,7 @@
     # Monitor
     monitor=DP-2,3840x2160@60,auto,1.5
     monitor=DP-3,2560x1440@144,auto,1 
+    monitor=Unknown-1,disable 
 
     xwayland {
         force_zero_scaling = true
