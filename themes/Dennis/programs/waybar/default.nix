@@ -12,7 +12,7 @@
                  font-family: "${config.stylix.fonts.monospace.name}";
                  font-size: 12pt;
                  font-weight: bold;
-                 border-radius: 8px;
+                 /* border-radius: 8px; */
                  transition-property: background-color;
                  transition-duration: 0.5s;
                }
@@ -29,17 +29,14 @@
                  animation-iteration-count: infinite;
                  animation-direction: alternate;
                }
-               window#waybar config.stylix.fonts.monospace.name{
-                 background-color: transparent;
-               }
                window > box {
                  margin-left: 5px;
                  margin-right: 5px;
-                 margin-top: 5px;
-                 background-color: #1e1e2a;
+                 /* margin-top: 5px; */
+                 background-color: #${config.stylix.base16Scheme.base00};
                  padding: 3px;
-                 padding-left:8px;
-                 border: 2px none #33ccff;
+                 padding-left: 8px;
+                 /* border: 2px none #33ccff; */
                }
          #workspaces {
                  padding-left: 0px;
@@ -230,7 +227,6 @@
           "tooltip" = false;
         };
         "tray" = {
-          "icon-size" = 15;
           "spacing" = 5;
         };
       }];

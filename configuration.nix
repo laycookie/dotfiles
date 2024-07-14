@@ -32,6 +32,23 @@ in
 	stylix.polarity = "dark";
 	stylix.homeManagerIntegration.followSystem = false;
 
+
+#    nixpkgs.overlays = [
+#      (final: prev: {
+#        hyprland = prev.hyprland.overrideAttrs (oldAttrs: rec {
+#          version = "0.39.1";
+#          src = prev.fetchFromGitHub {
+#            owner = "hyprwm";
+#            repo = "Hyprland";
+#            rev = "v0.39.1";
+#            sha256 = "0n3z0101bmwv0vmgszhxjp37wpx5ki49fqwkbg4x95gpnvpd6yqw";
+#          };
+#        });
+#      })
+#    ];
+
+
+
 	home-manager.extraSpecialArgs = { inherit inputs; };
 	home-manager.useGlobalPkgs = true;
 
@@ -55,16 +72,14 @@ in
 	environment.variables = {
   	  EDITOR = "nvim";
   	  SUDO_EDITOR="nvim";
-  	  BROWSER = "brave";
+  	  BROWSER = "schizofox";
   	  TERMINAL = "kitty";
   	  TERM = "kitty";
   	};
 
   	# Enable OpenGL
-  	hardware.opengl = {
+  	hardware.graphics = {
   	  enable = true;
-  	  driSupport = true;
-  	  driSupport32Bit = true;
   	};
 
   	# Nvidia support
@@ -74,13 +89,11 @@ in
   	  modesetting.enable = true;
   	  powerManagement.enable = true;
   	  powerManagement.finegrained = false;
-  	  open = false;
+  	  open = false; # open source drivers
   	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  	  package = config.boot.kernelPackages.nvidiaPackages.production;
   	};
 
-  	# networking.hostName = "nixos"; # Define your hostname.
-  	# Pick only one of the below networking options.
   	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   	networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default
   	

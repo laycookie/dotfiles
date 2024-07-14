@@ -1,65 +1,83 @@
 { config, pkgs, ... }:
 {
-	home = {
-		username = "Dennis";
-		homeDirectory = "/home/Dennis";
+	programs.steam = {
+		enable = true;
+		remotePlay.openFirewall = true;
+		dedicatedServer.openFirewall = true;
+		localNetworkGameTransfers.openFirewall = true;
 
-		stateVersion = "23.11";
-		file = {};
-		sessionVariables = {};
+		gamescopeSession.enable = true;
 	};
+	programs.nix-ld.enable = true;
 
-	nixpkgs.config.allowUnfree = true;
+	home-manager.users.Dennis = {
+		home = {
+			username = "Dennis";
+			homeDirectory = "/home/Dennis";
 
-  home.sessionVariables = {
-	"QT_STYLE_OVERRIDE"="kvantum";
-  };
-	home.packages = (with pkgs; [
-		# GUI
-		webcord-vencord
-		telegram-desktop
-		signal-desktop
-		obs-studio
-		obsidian
-		mpv
-		libsForQt5.gwenview
-		brave
-		thunderbird
-		gparted
-		gnome.nautilus
-		libsForQt5.qtstyleplugin-kvantum
-		libsForQt5.dolphin
-		rofi-wayland
-		wlogout
-		helvum
-		pavucontrol
-		gnome.file-roller
-		steam
-		blender
-		qbittorrent
-		localsend
+			stateVersion = "23.11";
+			file = {};
+			sessionVariables = {};
+		};
 
-		# CLI
-		neofetch
-		onefetch
-		bat
-		zoxide
-		fzf
-		speedtest-rs
-		swaylock
-		swaynotificationcenter
-		swww
-		cava
-		mpd
-		imagemagick
-		ffmpeg
-		yt-dlp
-		brightnessctl
+		nixpkgs.config.allowUnfree = true;
 
-		# Themes
-		bibata-cursors
-	]);
+		home.packages = (with pkgs; [
+			# GUI
+			webcord-vencord
+			telegram-desktop
+			signal-desktop
+			obs-studio
+			obsidian
+			mpv
+			libsForQt5.gwenview
+			brave
+			thunderbird
+			gparted
+			nautilus
+			libsForQt5.qtstyleplugin-kvantum
+			libsForQt5.dolphin
+			rofi-wayland
+			wlogout
+			helvum
+			pavucontrol
+			file-roller
+			blender
+			qbittorrent
+			localsend
+			lutris
+			bottles
+			aseprite
+			gimp
+			wineWowPackages.waylandFull
+
+			# CLI
+			neofetch
+			onefetch
+			bat
+			zoxide
+			fzf
+			fd
+			gitleaks
+			speedtest-rs
+			swaylock
+			swaynotificationcenter
+			swww
+			cava
+			mpd
+			imagemagick
+			ffmpeg
+			yt-dlp
+			brightnessctl
+			mangohud
+			steamcmd
+			steam-tui
+
+			# Themes
+			bibata-cursors
+		]);
 
 
-	imports = [ ../themes/Dennis ];
+		imports = [ ../themes/Dennis ];
+	};
 }

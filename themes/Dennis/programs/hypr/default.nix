@@ -8,7 +8,6 @@
   #test later systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     enable = true;
-    # Build of the latest commit
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     extraConfig = ''
@@ -80,9 +79,9 @@
         preserve_split = yes
     }
 
-    master {
-        new_is_master = yes
-    }
+    # master {
+    #     new_is_master = yes
+    # }
 
     gestures {
         workspace_swipe = false

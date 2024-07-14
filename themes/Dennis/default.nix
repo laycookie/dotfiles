@@ -6,8 +6,19 @@
     ./scripts
     ./cava
   ];
+
+	gtk = {
+		enable = true;
+		iconTheme = {
+			package = pkgs.reversal-icon-theme;
+			name = "Reversal";
+		};
+	};
+
+
  stylix = {
-	image = ./wallpapers/rofi.png;
+ 	enable = true;
+	image = ./wallpapers/menhera.jpg;
 
 	targets.rofi.enable = false;
 	targets.waybar.enable = false;
@@ -39,6 +50,7 @@
 	fonts = {
 		sizes = {
 			terminal = 14;
+			desktop = 12;
 		};
 
 		monospace = {

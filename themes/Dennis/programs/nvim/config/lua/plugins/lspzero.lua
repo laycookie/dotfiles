@@ -32,6 +32,8 @@ return {
 	'eslint',
 	'lua_ls',
 	'pylsp',
+	'lemminx', -- XML
+	'slint_lsp'
       })
 
       lsp.format_on_save({

@@ -11,7 +11,7 @@
     ./mpd
     ./nvim
     ./eww
-    ./firefox
     ./schizofox
+    ./TagStudio
   ];
 }
