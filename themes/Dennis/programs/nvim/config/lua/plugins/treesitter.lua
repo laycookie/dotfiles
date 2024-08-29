@@ -28,6 +28,8 @@ return {
       			"typescript",
       			"xml",
       			"yaml",
+			"wgsl",
+			"wgsl_bevy",
 		},
 	},
 }

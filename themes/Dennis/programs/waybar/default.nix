@@ -81,13 +81,13 @@
                /*     color: rgb(26, 24, 38); */
                /* } */
          #memory {
-                 color: rgb(181, 232, 224);
+                 color: #${config.stylix.base16Scheme.base0C};
                }
          #cpu {
-                 color: rgb(245, 194, 231);
+                 color: #${config.stylix.base16Scheme.base08};
                }
          #clock {
-                 color: rgb(217, 224, 238);
+                 color: #${config.stylix.base16Scheme.base07};
                }
         /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
@@ -96,22 +96,25 @@
                  color: #33ccff;
             }
          #temperature {
-                 color: rgb(150, 205, 251);
+                 color: #${config.stylix.base16Scheme.base0D};
                }
          #backlight {
                  color: rgb(248, 189, 150);
                }
          #pulseaudio {
-                 color: rgb(245, 224, 220);
+                 color: #${config.stylix.base16Scheme.base0A};
                }
          #network {
-                 color: #ABE9B3;
+                 color: #${config.stylix.base16Scheme.base0B};
                }
          #network.disconnected {
-                 color: rgb(255, 255, 255);
+                 color: #${config.stylix.base16Scheme.base00};
                }
          #custom-powermenu {
-                 color: rgb(242, 143, 173);
+                 color: #${config.stylix.base16Scheme.base08};
+               }
+	       #custom-swaync {
+                 color: #${config.stylix.base16Scheme.base07};
                  padding-right: 8px;
                }
          #tray {
@@ -126,7 +129,7 @@
                  background: transparent;
                }
          #mpd {
-                 color: #c0caf5;
+                 color: #${config.stylix.base16Scheme.base0E};
                }
          #custom-cava-internal{
                  font-family: "Hack Nerd Font" ;

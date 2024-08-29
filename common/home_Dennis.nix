@@ -1,18 +1,17 @@
 { config, pkgs, inputs, ... }:
 {
 
-	# programs.steam = {
-	# 	enable = true;
-	# 	remotePlay.openFirewall = true;
-	# 	dedicatedServer.openFirewall = true;
-	# 	localNetworkGameTransfers.openFirewall = true;
+	programs.steam = {
+		enable = true;
+		remotePlay.openFirewall = true;
+		dedicatedServer.openFirewall = true;
+		localNetworkGameTransfers.openFirewall = true;
 
-	# 	gamescopeSession.enable = true;
-	# };
+		# gamescopeSession.enable = true;
+	};
 
 	home-manager.users.Dennis = {
 		imports = [ 
-			./wayland.nix 
 			../themes/Dennis
 		];
 
@@ -20,33 +19,32 @@
 			username = "Dennis";
 			homeDirectory = "/home/Dennis";
 
-			stateVersion = "23.11";
+			stateVersion = "24.05";
 			file = {};
 			sessionVariables = {};
 		};
 
 		nixpkgs.config.allowUnfree = true;
-
 		home.packages = (with pkgs; [
 			# GUI
 			webcord-vencord
 			telegram-desktop
 			signal-desktop
 			obs-studio
+			gnome.gnome-sound-recorder
 			obsidian
 			mpv
 			libsForQt5.gwenview
 			brave
 			thunderbird
-			gparted
-			nautilus
+			gnome.nautilus
 			libsForQt5.qtstyleplugin-kvantum
 			libsForQt5.dolphin
 			rofi-wayland
 			wlogout
 			helvum
 			pavucontrol
-			file-roller
+			gnome.file-roller
 			blender
 			qbittorrent
 			localsend

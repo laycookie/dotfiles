@@ -48,3 +48,4 @@ vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:lis
 for i=1,9 do
 	vim.keymap.set("n", "<leader>" .. tostring(i), function() harpoon:list():select(i) end)
 end
+

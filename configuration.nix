@@ -2,11 +2,11 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs,
+{ pkgs,
+  inputs,
   outputs,
   config,
   lib,
-  pkgs,
   hostname,
   username,
   stateVersion,
@@ -20,7 +20,7 @@ in
     [ # Include the results of the hardware scan.
 	./hardware-configuration.nix
 	./common/common_pkgs.nix
- 	# ./common/wayland.nix
+ 	./common/wayland.nix
 	./common/users.nix
 	./common/configs/fonts.nix
     ];
@@ -48,7 +48,8 @@ in
 	};
 
 	boot.kernelParams = [ 
-	"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+		"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+		# "nvidia-drm.modest=1"
 	];
 
 	environment.variables = {
@@ -59,24 +60,27 @@ in
   	  TERM = "kitty";
   	};
 
-  	hardware.graphics = {
+	hardware.bluetooth.enable = true;
+	
+	hardware.enableAllFirmware = true;
+
+  	hardware.opengl = {
   	  enable = true;
-	  enable32Bit = true;
+	  # enable32Bit = true;
   	};
 
   	# Nvidia support
   	services.xserver.videoDrivers = [ "nvidia" ];
 
   	hardware.nvidia = {
-  	  modesetting.enable = true;
+  	  modesetting.enable = false;
   	  powerManagement.enable = true;
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers
   	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  	  package = config.boot.kernelPackages.nvidiaPackages.production;
   	};
-	
-	hardware.bluetooth.enable = true;
+
 
 	# Pick only one of the below networking options.
   	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -87,9 +91,15 @@ in
 
   	# Enable the GNOME/KDE Desktop Environment.
   	services.xserver.displayManager.gdm.enable = true;
-	# services.displayManager.sddm.enable = true;
-	# services.xserver.displayManager.sddm.wayland.enable = true;
-	# services.desktopManager.plasma6.enable = true;
+	# services = {
+	# 	displayManager = {
+	# 		sddm = {
+	# 			enable = true;
+	# 			wayland.enable = true;
+	# 		};
+	# 	};
+	# };
+	# services.xserver.desktopManager.plasma5.enable = true;
 
   	# swaylock stuff
   	security.pam.services.swaylock = {};

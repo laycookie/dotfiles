@@ -16,6 +16,10 @@ let
 		echo 'No dir selected.'
 	fi
   '';
+  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+	git add .
+	nixos-rebuild --flake /etc/nixos#default
+  '';
 in
 {
   home.packages = with pkgs; [

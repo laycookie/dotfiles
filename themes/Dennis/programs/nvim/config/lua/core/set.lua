@@ -18,4 +18,3 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 30
 
 vim.g.colorcolumn = "80"
-
