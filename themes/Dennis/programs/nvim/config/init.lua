@@ -17,4 +17,6 @@ require("lazy").setup("plugins")
 -- settings
 require("core.set")
 -- remap
-require("core.keymap")
+vim.schedule(function()
+	require("core.keymap")
+end)

@@ -12,7 +12,11 @@ return {
     {'hrsh7th/cmp-nvim-lsp'},     -- Required
     {'hrsh7th/cmp-buffer'},      
     {'hrsh7th/cmp-path'},         
-    {'saadparwaiz1/cmp_luasnip'}, 
+    {'saadparwaiz1/cmp_luasnip'},
+    {
+	'L3MON4D3/LuaSnip',
+	build = "make install_jsregexp",
+    },
     {'hrsh7th/cmp-nvim-lua'},     
 
     -- Snippets
@@ -23,27 +27,63 @@ return {
     {'onsails/lspkind.nvim'},
   },
   config = function()
-      local lsp = require('lsp-zero')
-      lsp.preset('recommended')
+	local lsp = require('lsp-zero')
+	local keymap = require('core.keymap')
+
+      lsp.extend_lspconfig({
+	sign_text = true,
+	lsp_attach = keymap.lsp_attach,
+	capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      })
+
+      lsp.on_attach(function(client, bufnr)
+		lsp.default_keymaps({buffer = bufnr})
+      end)
+
+	local cmp = require('cmp')
+	local cmp_format = require('lsp-zero').cmp_format({details = true})
+	require('luasnip.loaders.from_vscode').lazy_load()
+	cmp.setup({
+		sources = {
+			-- {name = 'nvim_lsp'},
+			-- {name = 'buffer'},
+			{name = 'luasnip'}
+		},
+		formatting = cmp_format,
+		mapping = keymap.autocompletion,
+		snippet = {
+			expand = function(args)
+				require('luasnip').lsp_expand(args.body)
+			end,
+		},
+	})
+
 
       require('mason').setup({})
       require('mason-lspconfig').setup({
 		ensure_installed = {
-			'tsserver',
-			'eslint',
 			'lua_ls',
 			'pylsp',
 			'lemminx', -- XML
 			'slint_lsp',
-			'wgsl_analyzer'
+			'wgsl_analyzer',
+			'tsserver',
+			'eslint',
+			'tailwindcss',
+			'prismals',
+			'jsonls',
+			'html',
+			'cssls',
+			'graphql',
 		}
       })
 
 
       lsp.format_on_save({
 	servers = {
-		["rust-analyzer"] = {"rust"}
-	}
+		["rust-analyzer"] = {"rust"},
+		["tsserver"] = {'javascript', 'typescript'},
+	},
       })
 
       lsp.setup()

@@ -73,7 +73,7 @@ in
   	services.xserver.videoDrivers = [ "nvidia" ];
 
   	hardware.nvidia = {
-  	  modesetting.enable = false;
+  	  modesetting.enable = true;
   	  powerManagement.enable = true;
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers

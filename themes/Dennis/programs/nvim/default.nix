@@ -18,6 +18,7 @@
 			gcc
 			nodejs_22
 			python3
+			luarocks
 		];
 	};
 
