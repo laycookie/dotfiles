@@ -58,6 +58,8 @@ in
   	  BROWSER = "schizofox";
   	  TERMINAL = "kitty";
   	  TERM = "kitty";
+
+	  VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
   	};
 
 	hardware.bluetooth.enable = true;

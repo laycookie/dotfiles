@@ -28,6 +28,7 @@
 		home.packages = (with pkgs; [
 			# GUI
 			webcord-vencord
+			zoom-us
 			telegram-desktop
 			signal-desktop
 			obs-studio

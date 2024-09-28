@@ -3,25 +3,73 @@ return {
   lazy = false,
   dependencies = {
     -- LSP Support
-    {'williamboman/mason.nvim'},           
+    {
+    	'williamboman/mason.nvim',
+	opts = {
+		ensure_installed = { 'prettierd' } -- Might possibly not be working
+	},
+    },           
     {'williamboman/mason-lspconfig.nvim'}, 
-    {'neovim/nvim-lspconfig'},             -- Required
+    {
+    	'neovim/nvim-lspconfig',
+    },
 
     -- Autocompletion
-    {'hrsh7th/nvim-cmp'},       
-    {'hrsh7th/cmp-nvim-lsp'},     -- Required
-    {'hrsh7th/cmp-buffer'},      
-    {'hrsh7th/cmp-path'},         
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-path'},
     {'saadparwaiz1/cmp_luasnip'},
     {
 	'L3MON4D3/LuaSnip',
 	build = "make install_jsregexp",
     },
-    {'hrsh7th/cmp-nvim-lua'},     
+    {'hrsh7th/cmp-nvim-lua'},
+    {
+    	'windwp/nvim-ts-autotag', 
+    	ft = {"html", "javascript", "javascriptreact", "typescript", "typescriptreact", "astro"},
+	config = function()
+		require("nvim-ts-autotag").setup()
+	end
+    },
+    -- Formater
+    {
+	"nvimtools/none-ls.nvim",
+	event = "VeryLazy",
+	opts = function()
+		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+		local null_ls = require("null-ls")
+
+		local opts = { 
+			sources = {
+				null_ls.builtins.formatting.prettierd,
+			},
+			on_attach = function(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({
+						group = augroup,
+						buffer = bufnr,
+					})
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr })
+						end,
+					})
+				end
+			end,
+		}
+
+		return opts
+	end,
+    },
 
     -- Snippets
-    {'L3MON4D3/LuaSnip'},             -- Required
-    {'rafamadriz/friendly-snippets'},
+    {
+	'L3MON4D3/LuaSnip',
+	dependencies = { 'rafamadriz/friendly-snippets' }
+    },
 
     -- lspkind
     {'onsails/lspkind.nvim'},
@@ -37,7 +85,10 @@ return {
       })
 
       lsp.on_attach(function(client, bufnr)
-		lsp.default_keymaps({buffer = bufnr})
+		lsp.default_keymaps({
+			buffer = bufnr,
+			preserve_mappings = false,
+		})
       end)
 
 	local cmp = require('cmp')
@@ -45,12 +96,12 @@ return {
 	require('luasnip.loaders.from_vscode').lazy_load()
 	cmp.setup({
 		sources = {
-			-- {name = 'nvim_lsp'},
-			-- {name = 'buffer'},
+			{name = 'nvim_lsp'},
+			{name = 'buffer'},
 			{name = 'luasnip'}
 		},
 		formatting = cmp_format,
-		mapping = keymap.autocompletion,
+		mapping = keymap.cmp_mapping,
 		snippet = {
 			expand = function(args)
 				require('luasnip').lsp_expand(args.body)
@@ -67,12 +118,13 @@ return {
 			'lemminx', -- XML
 			'slint_lsp',
 			'wgsl_analyzer',
-			'tsserver',
 			'eslint',
+			'tsserver',
 			'tailwindcss',
 			'prismals',
 			'jsonls',
 			'html',
+			'astro',
 			'cssls',
 			'graphql',
 		}
@@ -82,7 +134,6 @@ return {
       lsp.format_on_save({
 	servers = {
 		["rust-analyzer"] = {"rust"},
-		["tsserver"] = {'javascript', 'typescript'},
 	},
       })
 
