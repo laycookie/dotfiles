@@ -44,6 +44,7 @@ in
 	# bootloader.
 	boot.loader = {
 		systemd-boot.enable = true;
+		systemd-boot.configurationLimit = 5;
 		efi.canTouchEfiVariables = true;
 	};
 
@@ -70,6 +71,19 @@ in
   	  enable = true;
 	  # enable32Bit = true;
   	};
+
+	
+	# Enable the CUPS printing service
+  	services.printing.enable = true;
+  	services.printing.drivers = [ pkgs.gutenprint pkgs.hplip ];  # Add specific drivers if needed
+  	
+  	# Optionally, you can add Avahi to auto-discover network printers
+  	services.avahi.enable = true;
+  	services.avahi.nssmdns4 = true;
+
+  	# Add CUPS to the system environment so you can use `lp` commands
+  	environment.systemPackages = with pkgs; [ cups ];
+
 
   	# Nvidia support
   	services.xserver.videoDrivers = [ "nvidia" ];

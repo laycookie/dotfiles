@@ -7,7 +7,8 @@
     ./kitty
     ./rofi
     ./waybar
-    ./zsh
+    #./zsh
+    ./nushell
     ./swaylock
     ./zoxide
     ./mpd

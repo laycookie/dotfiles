@@ -102,6 +102,7 @@
     bind = $mainMod, G, fullscreen,
 
 
+    # Apps shortcuts
     bind = $mainMod, SPACE, 	exec,	rofi -show drun
     bind = $mainMod, M, 	exec,	wlogout
     bind = $mainMod, Q, 	exec,	kitty
@@ -125,6 +126,7 @@
     bind = $mainMod SHIFT, K, movewindow, u
     bind = $mainMod SHIFT, J, movewindow, d
 
+    # Screenshots
     bind = , Print, exec, grim -g "$(slurp)" - | wl-copy
     bind = SHIFT, Print, exec, grim -g "$(slurp)"
 
@@ -179,7 +181,6 @@
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
-    bindm = ALT, mouse:272, resizewindow
         '';
   };
 

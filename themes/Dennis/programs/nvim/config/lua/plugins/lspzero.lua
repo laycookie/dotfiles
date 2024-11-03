@@ -119,7 +119,7 @@ return {
 			'slint_lsp',
 			'wgsl_analyzer',
 			'eslint',
-			'tsserver',
+			'ts_ls', - TypeScript
 			'tailwindcss',
 			'prismals',
 			'jsonls',
@@ -127,6 +127,7 @@ return {
 			'astro',
 			'cssls',
 			'graphql',
+			'clangd', -- C++
 		}
       })
 

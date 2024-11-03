@@ -1,5 +1,10 @@
 { config, pkgs, inputs, ... }:
 {
+	programs.nix-ld.enable = true;
+	programs.nix-ld.libraries = with pkgs; [
+		libGL
+		mesa
+	];
 
 	programs.steam = {
 		enable = true;
@@ -31,6 +36,7 @@
 			zoom-us
 			telegram-desktop
 			signal-desktop
+			simplex-chat-desktop
 			obs-studio
 			gnome.gnome-sound-recorder
 			obsidian
@@ -52,8 +58,8 @@
 			lutris
 			bottles
 			aseprite
-			gimp
 			wineWowPackages.waylandFull
+			protonvpn-gui
 
 			# CLI
 			neofetch
@@ -72,10 +78,15 @@
 			imagemagick
 			ffmpeg
 			yt-dlp
+			ani-cli
 			brightnessctl
 			mangohud
 			steamcmd
 			steam-tui
+
+			# TEMP
+			slurp
+			grim
 
 			# Themes
 			bibata-cursors
