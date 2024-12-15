@@ -12,6 +12,8 @@ vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 -- Cloak
 vim.keymap.set('n', '<leader>ct', vim.cmd.CloakToggle)
 -- LSP zero
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+
 module_export.lsp_attach = function(client, bufnr)
   local opts = {buffer = bufnr}
 

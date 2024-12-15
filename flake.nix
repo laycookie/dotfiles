@@ -2,11 +2,11 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 	home-manager = {
-    		url = "github:nix-community/home-manager/release-24.05";
-    		# url = "github:nix-community/home-manager";
+    		# url = "github:nix-community/home-manager/release-24.05";
+    		url = "github:nix-community/home-manager";
     	  	inputs.nixpkgs.follows = "nixpkgs";
     	};	
 	niri = { 
@@ -20,8 +20,13 @@
 		# submodules = true;
 		# rev = "a71207434c0bc2c8e05e94b1619e68059a002879";
 	};
-    stylix.url = "github:danth/stylix";
-    schizofox.url = "github:schizofox/schizofox";
+	stylix.url = "github:danth/stylix";
+	# stylix = {
+	# 	url = "https://github.com/laycookie/stylix";
+	# 	type = "git";
+	# 	rev = "1e5cfceb9a23ef824a4c4344c7958486d0663a5c";
+	# };
+    	schizofox.url = "github:schizofox/schizofox";
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:

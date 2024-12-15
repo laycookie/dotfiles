@@ -12,6 +12,7 @@ return {
     {'williamboman/mason-lspconfig.nvim'}, 
     {
     	'neovim/nvim-lspconfig',
+	-- commit = "36f21ab9555d"
     },
 
     -- Autocompletion
@@ -78,6 +79,14 @@ return {
 	local lsp = require('lsp-zero')
 	local keymap = require('core.keymap')
 
+	vim.diagnostic.config({
+		virtual_text = true,
+		float = {
+			style = '',
+			source = 'always',
+		},
+	})
+
       lsp.extend_lspconfig({
 	sign_text = true,
 	lsp_attach = keymap.lsp_attach,
@@ -109,6 +118,12 @@ return {
 		},
 	})
 
+	vim.filetype.add({
+		extension = {
+			slint = 'slint',
+		}
+	})
+
 
       require('mason').setup({})
       require('mason-lspconfig').setup({
@@ -119,7 +134,7 @@ return {
 			'slint_lsp',
 			'wgsl_analyzer',
 			'eslint',
-			'ts_ls', - TypeScript
+			'denols', -- TypeScript
 			'tailwindcss',
 			'prismals',
 			'jsonls',
@@ -128,7 +143,13 @@ return {
 			'cssls',
 			'graphql',
 			'clangd', -- C++
-		}
+			'nil_ls', -- nix
+		},
+		handlers = {
+			function(server_name)
+				require('lspconfig')[server_name].setup({})
+			end,
+		},
       })
 
 

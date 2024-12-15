@@ -33,33 +33,41 @@
 		home.packages = (with pkgs; [
 			# GUI
 			webcord-vencord
+			discord-canary
 			zoom-us
 			telegram-desktop
 			signal-desktop
 			simplex-chat-desktop
 			obs-studio
-			gnome.gnome-sound-recorder
 			obsidian
 			mpv
 			libsForQt5.gwenview
 			brave
 			thunderbird
-			gnome.nautilus
+			# gnome.gnome-sound-recorder
+			# gnome.nautilus
+			# gnome.file-roller
+			gnome-sound-recorder
+			nautilus
+			file-roller
 			libsForQt5.qtstyleplugin-kvantum
 			libsForQt5.dolphin
 			rofi-wayland
 			wlogout
 			helvum
+			qpwgraph
 			pavucontrol
-			gnome.file-roller
-			blender
-			qbittorrent
+			# blender
+			# qbittorrent
 			localsend
 			lutris
+			prismlauncher
 			bottles
-			aseprite
+			# aseprite
 			wineWowPackages.waylandFull
 			protonvpn-gui
+			heaptrack
+			vscode
 
 			# CLI
 			neofetch

@@ -3,7 +3,7 @@
     nixpkgs.overlays = [
     (self: super: {
       mpv = super.mpv.override {
-        scripts = [ self.mpvScripts.mpris self.mpvScripts.sponsorblock self.mpvScripts.thumbfast];
+        scripts = [ self.mpvScripts.mpris self.mpvScripts.sponsorblock self.mpvScripts.thumbfast ];
       };
     })
   ];
@@ -17,8 +17,6 @@
     ripgrep
     lm_sensors
     zellij
-    zsh
-
-    waybar
+    nushell
   ];
 }

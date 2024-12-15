@@ -5,7 +5,7 @@
 		settings = {
 			confirm_os_window_close = "0";
 			window_padding_width = "10";
-			shell = "zsh";
+			shell = "nu";
 		};
 		shellIntegration.enableZshIntegration = false;
 	};

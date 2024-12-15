@@ -169,7 +169,7 @@
         };
         "pulseaudio" = {
 	  "on-click" = "exec pavucontrol";
-	  "on-click-middle" = "exec helvum";
+	  "on-click-middle" = "exec qpwgraph";
           "scroll-step" = 2;
           "format" = "{icon} {volume}%";
           "format-muted" = "󰖁 Muted";

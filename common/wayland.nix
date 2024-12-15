@@ -1,9 +1,21 @@
 { config, pkgs, inputs, ... }:
 {
-	xdg.portal.xdgOpenUsePortal = false;
-	xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+	xdg.portal = {
+		enable = true;
+		xdgOpenUsePortal = false;
+		extraPortals = with pkgs; [ 
+			xdg-desktop-portal-gtk
+			xdg-desktop-portal-hyprland
+			xdg-desktop-portal-wlr
+		];
+		config.common.default = "*";
+	};
 	services.dbus.implementation = "broker";
 	services.dbus.packages = with pkgs; [
-		gcr gnome.gnome-settings-daemon
-	]; 
+		# gcr gnome.gnome-settings-daemon
+		gcr gnome-settings-daemon
+	];
+	environment.variables = {
+		MOZ_ENABLE_WAYLAND="0";
+	};
 }

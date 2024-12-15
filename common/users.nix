@@ -4,7 +4,8 @@
 		isNormalUser = true;
 		description = "Dennis Lonoshchuk";
 		extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-		initialPassword = "1234";
+		initialPassword = "43210";
+		shell = pkgs.nushell;
 	};
 	imports = [ ./home_Dennis.nix ];
 }

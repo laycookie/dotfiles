@@ -50,7 +50,7 @@ in
 
 	boot.kernelParams = [ 
 		"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-		# "nvidia-drm.modest=1"
+		"nvidia-drm.modeset=1"
 	];
 
 	environment.variables = {
@@ -71,6 +71,10 @@ in
   	  enable = true;
 	  # enable32Bit = true;
   	};
+  	# hardware.graphics = {
+  	#   enable = true;
+	#   # enable32Bit = true;
+  	# };
 
 	
 	# Enable the CUPS printing service
@@ -89,7 +93,7 @@ in
   	services.xserver.videoDrivers = [ "nvidia" ];
 
   	hardware.nvidia = {
-  	  modesetting.enable = true;
+  	  modesetting.enable = false;
   	  powerManagement.enable = true;
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers
@@ -128,7 +132,9 @@ in
   	      alsa.support32Bit = true;
   	      pulse.enable = true;
   	      jack.enable = true;
-  	};
+	      wireplumber.enable = true;
+  	};  
+
 
 	# Manage the virtualisation services
 	# virtualisation = {

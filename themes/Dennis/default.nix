@@ -7,13 +7,13 @@
     ./cava
   ];
 
-	gtk = {
-		enable = true;
-		iconTheme = {
-			package = pkgs.reversal-icon-theme;
-			name = "Reversal";
-		};
-	};
+	# gtk = {
+	# 	enable = true;
+	# 	iconTheme = {
+	# 		package = pkgs.reversal-icon-theme;
+	# 		name = "Reversal";
+	# 	};
+	# };
 
 	stylix = {
  		enable = true;
@@ -23,6 +23,13 @@
  	       	targets.waybar.enable = false;
 
  	       	 polarity = "dark";
+
+	 	iconTheme = {
+			enable = true;
+	 		package = pkgs.reversal-icon-theme;
+	 		light = "Reversal";
+	 		dark = "Reversal";
+	 	};
  	       	base16Scheme = {
  	       		base00 = "282828";
  	       		base01 = "3c3836";
@@ -53,7 +60,8 @@
  	       		};
 
  	       		monospace = {
- 	       			package = pkgs.nerdfonts.override { fonts = ["JetBrainsMono"]; };
+ 	       			# package = pkgs.nerdfonts.override { fonts = ["JetBrainsMono"]; };
+ 	       			package = pkgs.nerd-fonts.jetbrains-mono;
  	       			name = "JetBrainsMono Nerd Font Mono";
  	       		};
  	       		sansSerif = {
