@@ -3,11 +3,11 @@
     ./swaync
     ./hypr
     ./river
-    ./niri
+    # ./niri
     ./kitty
     ./rofi
     ./waybar
-    #./zsh
+    # ./zsh
     ./nushell
     ./swaylock
     ./zoxide
@@ -15,5 +15,6 @@
     ./nvim
     ./eww
     ./schizofox
+    ./mangohud
   ];
 }

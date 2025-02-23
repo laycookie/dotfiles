@@ -54,20 +54,21 @@ in
 	];
 
 	environment.variables = {
-  	  EDITOR = "nvim";
-  	  SUDO_EDITOR="nvim";
-  	  BROWSER = "schizofox";
-  	  TERMINAL = "kitty";
-  	  TERM = "kitty";
+		VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+		
+		EDITOR = "nvim";
+  	  	SUDO_EDITOR="nvim";
+  	  	BROWSER = "schizofox";
+  	  	TERMINAL = "kitty";
+  	  	TERM = "kitty";
 
-	  VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
   	};
 
 	hardware.bluetooth.enable = true;
 	
 	hardware.enableAllFirmware = true;
 
-  	hardware.opengl = {
+  	hardware.graphics = {
   	  enable = true;
 	  # enable32Bit = true;
   	};
@@ -87,7 +88,6 @@ in
 
   	# Add CUPS to the system environment so you can use `lp` commands
   	environment.systemPackages = with pkgs; [ cups ];
-
 
   	# Nvidia support
   	services.xserver.videoDrivers = [ "nvidia" ];

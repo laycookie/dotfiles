@@ -68,11 +68,13 @@
 			protonvpn-gui
 			heaptrack
 			vscode
+			(renderdoc.override { waylandSupport = true; })
 
 			# CLI
 			neofetch
 			onefetch
 			bat
+			xdg-user-dirs
 			zoxide
 			fzf
 			fd
@@ -88,9 +90,9 @@
 			yt-dlp
 			ani-cli
 			brightnessctl
-			mangohud
 			steamcmd
 			steam-tui
+			flatpak
 
 			# TEMP
 			slurp
