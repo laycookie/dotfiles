@@ -24,6 +24,7 @@ in
 	./common/users.nix
 	./common/configs/fonts.nix
     ];
+    	boot.kernelPackages = pkgs.linuxPackages_6_6;
 	# TODO: Move to themes (Set wallpaper)
 	stylix.image = pkgs.fetchurl {
 		url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
@@ -51,6 +52,7 @@ in
 	boot.kernelParams = [ 
 		"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
 		"nvidia-drm.modeset=1"
+		"nvidia_drm.fbdev=0"
 	];
 
 	environment.variables = {
@@ -98,7 +100,7 @@ in
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers
   	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.production;
+  	  package = config.boot.kernelPackages.nvidiaPackages.beta;
   	};
 
 
