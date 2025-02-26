@@ -17,13 +17,14 @@ in
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
 	./hardware-configuration.nix
-	./common/common_pkgs.nix
- 	./common/wayland.nix
-	./common/users.nix
+	./common/common_pkgs.nix # System packages
+ 	./common/wayland.nix # Wayland settings
+	./common/users.nix # User defenitions
 	./common/configs/fonts.nix
     ];
+	boot.kernelPackages = pkgs.linuxPackages_latest;
 	# TODO: Move to themes (Set wallpaper)
 	stylix.image = pkgs.fetchurl {
 		url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
@@ -35,7 +36,6 @@ in
 	home-manager.extraSpecialArgs = { inherit inputs; };
 	home-manager.useGlobalPkgs = true;
 
-	# Allow unfree software
 	nixpkgs.config = {
 		allowUnfree = true;
 		cudaSupport = true;
@@ -51,10 +51,11 @@ in
 	boot.kernelParams = [ 
 		"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
 		"nvidia-drm.modeset=1"
+		"nvidia_drm.fbdev=0"
 	];
 
 	environment.variables = {
-		VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+		# VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 		
 		EDITOR = "nvim";
   	  	SUDO_EDITOR="nvim";
@@ -98,7 +99,7 @@ in
   	  powerManagement.finegrained = false;
   	  open = false; # open source drivers
   	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.production;
+  	  package = config.boot.kernelPackages.nvidiaPackages.beta;
   	};
 
 
@@ -108,18 +109,22 @@ in
   	
   	# Enable the X11 windowing system.
   	services.xserver.enable = true;
-
+  	
   	# Enable the GNOME/KDE Desktop Environment.
-  	services.xserver.displayManager.gdm.enable = true;
-	# services = {
-	# 	displayManager = {
-	# 		sddm = {
-	# 			enable = true;
-	# 			wayland.enable = true;
-	# 		};
-	# 	};
-	# };
+  	# services.xserver.desktopManager.gnome.enable = true;
+	# services.xserver.displayManager.gdm.enable = true;
+	# services.xserver.displayManager.gdm.wayland = true;
+	services = {
+		displayManager = {
+			sddm = {
+				enable = true;
+				wayland.enable = false;
+			};
+		};
+	};
 	# services.xserver.desktopManager.plasma5.enable = true;
+	# services.xserver.desktopManager.xterm.enable = true;
+
 
   	# swaylock stuff
   	security.pam.services.swaylock = {};

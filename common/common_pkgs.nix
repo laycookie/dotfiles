@@ -1,12 +1,12 @@
 { pkgs, ...}:
 {
-    nixpkgs.overlays = [
-    (self: super: {
-      mpv = super.mpv.override {
-        scripts = [ self.mpvScripts.mpris self.mpvScripts.sponsorblock self.mpvScripts.thumbfast ];
-      };
-    })
-  ];
+# 	nixpkgs.overlays = [
+#     (self: super: {
+#       mpv = super.mpv.override {
+#         scripts = [ self.mpvScripts.mpris self.mpvScripts.sponsorblock self.mpvScripts.thumbfast ];
+#       };
+#     })
+#   ];
   environment.systemPackages = with pkgs; [
     git
     neovim

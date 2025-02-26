@@ -29,7 +29,7 @@
 			sessionVariables = {};
 		};
 
-		nixpkgs.config.allowUnfree = true;
+		# nixpkgs.config.allowUnfree = true;
 		home.packages = (with pkgs; [
 			# GUI
 			webcord-vencord
@@ -68,7 +68,12 @@
 			protonvpn-gui
 			heaptrack
 			vscode
-			(renderdoc.override { waylandSupport = true; })
+			(renderdoc.overrideAttrs (finalAttrs: previousAttrs: {
+					cmakeFlags = previousAttrs.cmakeFlags ++ ([
+						(lib.cmakeBool "ENABLE_UNSUPPORTED_EXPERIMENTAL_POSSIBLY_BROKEN_WAYLAND" true)
+					]);
+				})
+			)
 
 			# CLI
 			neofetch

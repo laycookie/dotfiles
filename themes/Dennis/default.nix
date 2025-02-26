@@ -17,7 +17,7 @@
 
 	stylix = {
  		enable = true;
- 		image = ./wallpapers/menhera.jpg;
+ 		# image = ./wallpapers/menhera.jpg;
 
  		targets.rofi.enable = false;
  	       	targets.waybar.enable = false;

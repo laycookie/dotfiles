@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
 	home = {
   		sessionVariables = {
@@ -19,6 +18,10 @@
   	  		XDG_CURRENT_DESKTOP = "Hyprland";
   	  		XDG_SESSION_DESKTOP = "Hyprland";
   	  		XDG_SESSION_TYPE = "wayland";
+
+
+			# GPU thingy
+			AQ_DRM_DEVICES = "/dev/dri/card0";
   	  	};
   	};
 }

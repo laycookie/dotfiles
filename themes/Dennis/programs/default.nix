@@ -2,6 +2,7 @@
   imports = [
     ./swaync
     ./hypr
+    ./awesome
     ./river
     # ./niri
     ./kitty
