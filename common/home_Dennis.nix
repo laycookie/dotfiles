@@ -78,6 +78,7 @@
 			zoxide
 			fzf
 			fd
+			nh
 			gitleaks
 			speedtest-rs
 			swaylock
