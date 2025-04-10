@@ -16,6 +16,7 @@
 		gcr gnome-settings-daemon
 	];
 	environment.variables = {
+		DISPLAY = "";
 		MOZ_ENABLE_WAYLAND="0";
 	};
 }

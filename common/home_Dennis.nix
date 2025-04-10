@@ -31,51 +31,49 @@
 
 		# nixpkgs.config.allowUnfree = true;
 		home.packages = (with pkgs; [
-			# GUI
+			# === GUI ===
+			# communication
 			webcord-vencord
 			discord-canary
 			zoom-us
 			telegram-desktop
 			signal-desktop
 			simplex-chat-desktop
+			# Creator
+			# blender
+			# aseprite
 			obs-studio
+			vscode
 			obsidian
+			reaper
+			# System
+			lact
 			mpv
 			libsForQt5.gwenview
-			brave
-			thunderbird
-			# gnome.gnome-sound-recorder
-			# gnome.nautilus
-			# gnome.file-roller
-			gnome-sound-recorder
-			nautilus
-			file-roller
-			libsForQt5.qtstyleplugin-kvantum
 			libsForQt5.dolphin
+			nautilus
+			gnome-sound-recorder
+			file-roller
 			rofi-wayland
 			wlogout
-			helvum
 			qpwgraph
 			pavucontrol
-			# blender
-			# qbittorrent
+			# e.t.c.
+			sniffnet
 			localsend
-			lutris
-			prismlauncher
-			bottles
-			# aseprite
-			wineWowPackages.waylandFull
+			brave
+			thunderbird
+			# qbittorrent
 			protonvpn-gui
 			heaptrack
-			vscode
-			(renderdoc.overrideAttrs (finalAttrs: previousAttrs: {
-					cmakeFlags = previousAttrs.cmakeFlags ++ ([
-						(lib.cmakeBool "ENABLE_UNSUPPORTED_EXPERIMENTAL_POSSIBLY_BROKEN_WAYLAND" true)
-					]);
-				})
-			)
 
-			# CLI
+			(renderdoc.override { waylandSupport = true; })
+			# Games
+			lutris
+			bottles
+			prismlauncher
+
+			# === CLI ===
 			neofetch
 			onefetch
 			bat
@@ -83,6 +81,7 @@
 			zoxide
 			fzf
 			fd
+			nh
 			gitleaks
 			speedtest-rs
 			swaylock
@@ -95,13 +94,17 @@
 			yt-dlp
 			ani-cli
 			brightnessctl
+			r2modman
 			steamcmd
 			steam-tui
-			flatpak
+			wineWowPackages.stableFull
+			winetricks
+			ventoy
 
 			# TEMP
 			slurp
 			grim
+			flatpak
 
 			# Themes
 			bibata-cursors

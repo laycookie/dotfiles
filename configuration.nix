@@ -24,7 +24,11 @@ in
 	./common/users.nix # User defenitions
 	./common/configs/fonts.nix
     ];
-	boot.kernelPackages = pkgs.linuxPackages_latest;
+    	# mainline
+    	boot.kernelPackages = pkgs.linuxPackages_testing;
+	# stable
+    	#boot.kernelPackages = pkgs.linuxPackages_6_13;
+	
 	# TODO: Move to themes (Set wallpaper)
 	stylix.image = pkgs.fetchurl {
 		url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
@@ -38,25 +42,26 @@ in
 
 	nixpkgs.config = {
 		allowUnfree = true;
-		cudaSupport = true;
+		rocmSupport = true;
+		# cudaSupport = true;
 	};
 
 	# bootloader.
 	boot.loader = {
-		systemd-boot.enable = true;
-		systemd-boot.configurationLimit = 5;
+		systemd-boot = {
+			enable = true;
+			configurationLimit = 10;
+		};
+		# grub = {
+		# 	enable = true;
+		# 	device = "nodev";
+		# 	useOSProber = true;
+		# 	efiSupport = true;
+		# };
 		efi.canTouchEfiVariables = true;
 	};
 
-	boot.kernelParams = [ 
-		"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-		"nvidia-drm.modeset=1"
-		"nvidia_drm.fbdev=0"
-	];
-
 	environment.variables = {
-		# VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-		
 		EDITOR = "nvim";
   	  	SUDO_EDITOR="nvim";
   	  	BROWSER = "schizofox";
@@ -90,17 +95,19 @@ in
   	# Add CUPS to the system environment so you can use `lp` commands
   	environment.systemPackages = with pkgs; [ cups ];
 
-  	# Nvidia support
-  	services.xserver.videoDrivers = [ "nvidia" ];
+	# Open source
+  	services.xserver.videoDrivers = [ "amdgpu" ];
+  	# Propritatry
+	# services.xserver.videoDrivers = [ "amdgpu" ];
 
-  	hardware.nvidia = {
-  	  modesetting.enable = false;
-  	  powerManagement.enable = true;
-  	  powerManagement.finegrained = false;
-  	  open = false; # open source drivers
-  	  nvidiaSettings = true;
-  	  package = config.boot.kernelPackages.nvidiaPackages.beta;
-  	};
+  	# hardware.nvidia = {
+  	#   modesetting.enable = false;
+  	#   powerManagement.enable = true;
+  	#   powerManagement.finegrained = false;
+  	#   open = false; # open source drivers
+  	#   nvidiaSettings = true;
+  	#   package = config.boot.kernelPackages.nvidiaPackages.beta;
+  	# };
 
 
 	# Pick only one of the below networking options.
@@ -111,17 +118,17 @@ in
   	services.xserver.enable = true;
   	
   	# Enable the GNOME/KDE Desktop Environment.
+
+  	services.xserver.displayManager.gdm.enable = true;
   	# services.xserver.desktopManager.gnome.enable = true;
-	# services.xserver.displayManager.gdm.enable = true;
-	# services.xserver.displayManager.gdm.wayland = true;
-	services = {
-		displayManager = {
-			sddm = {
-				enable = true;
-				wayland.enable = false;
-			};
-		};
-	};
+	# services = {
+	# 	displayManager = {
+	# 		sddm = {
+	# 			enable = true;
+	# 			wayland.enable = false;
+	# 		};
+	# 	};
+	# };
 	# services.xserver.desktopManager.plasma5.enable = true;
 	# services.xserver.desktopManager.xterm.enable = true;
 

@@ -124,7 +124,6 @@ return {
 		}
 	})
 
-
       require('mason').setup({})
       require('mason-lspconfig').setup({
 		ensure_installed = {
@@ -142,7 +141,7 @@ return {
 			'astro',
 			'cssls',
 			'graphql',
-			'clangd', -- C++
+			'harper_ls', -- English Grammer
 			'nil_ls', -- nix
 		},
 		handlers = {
@@ -151,7 +150,7 @@ return {
 			end,
 		},
       })
-
+      require("lspconfig").clangd.setup({}) -- Prevents Mason from installing its own clang
 
       lsp.format_on_save({
 	servers = {

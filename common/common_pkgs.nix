@@ -8,15 +8,16 @@
 #     })
 #   ];
   environment.systemPackages = with pkgs; [
-    git
-    neovim
-    wget
-    du-dust
-    btop
-    usbutils
-    ripgrep
-    lm_sensors
-    zellij
-    nushell
+  	nvd
+	git
+    	neovim
+    	wget
+    	du-dust
+    	btop
+    	usbutils
+    	ripgrep
+    	lm_sensors
+    	zellij
+    	nushell
   ];
 }

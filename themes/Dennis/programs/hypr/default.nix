@@ -12,8 +12,8 @@
     systemd.enable = true;
     extraConfig = ''
     # Monitor
-    monitor=DP-2,3840x2160@60,auto,1.5
-    monitor=DP-3,2560x1440@144,auto,1 
+    monitor=DP-1,3840x2160@60,auto,1.5
+    monitor=DP-2,2560x1440@144,auto,1 
     monitor=Unknown-1,disable 
 
     xwayland {
@@ -91,11 +91,11 @@
     # Example windowrule v1
     # Example windowrule v2
 
-    windowrule=float,^(pavucontrol)$
-    windowrule=float,^(blueman-manager)$
-    windowrule=size 934 525,^(mpv)$
-    windowrule=float,^(mpv)$
-    windowrule=center,^(mpv)$
+    # windowrule=float,^(pavucontrol)$
+    # windowrule=float,^(blueman-manager)$
+    # windowrule=size 934 525,^(mpv)$
+    # windowrule=float,^(mpv)$
+    # windowrule=center,^(mpv)$
     #windowrule=pin,^(firefox)$
 
     $mainMod = SUPER

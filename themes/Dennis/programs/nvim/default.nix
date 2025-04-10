@@ -2,6 +2,7 @@
 {
 	programs.neovim = {
 		enable = true;
+<<<<<<< HEAD
 		# package = pkgs.neovim-unwrapped.overrideAttrs (prev: {
 		# 	src = pkgs.fetchFromGitHub {
 		# 		# fill in the repo and hash and stuff here
@@ -11,6 +12,8 @@
 		# 		hash = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";
 		# 	};
 		# });
+=======
+>>>>>>> 56e0790
 		extraPackages = with pkgs; [
 			wl-clipboard
 			tree-sitter
