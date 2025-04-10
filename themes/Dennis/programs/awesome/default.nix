@@ -5,8 +5,8 @@
   	#  ./hyprland-environment.nix
   	];
 
-	services.xserver.windowManager.awesome = {
-		enable = true;
-	};
+	# services.xserver.windowManager.awesome = {
+	# 	enable = true;
+	# };
 }
  
