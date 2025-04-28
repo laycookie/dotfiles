@@ -6,15 +6,6 @@
     ./scripts
     ./cava
   ];
-
-	# gtk = {
-	# 	enable = true;
-	# 	iconTheme = {
-	# 		package = pkgs.reversal-icon-theme;
-	# 		name = "Reversal";
-	# 	};
-	# };
-
 	stylix = {
  		enable = true;
  		# image = ./wallpapers/menhera.jpg;

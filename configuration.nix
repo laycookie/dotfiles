@@ -44,6 +44,9 @@ in
 		allowUnfree = true;
 		rocmSupport = true;
 		# cudaSupport = true;
+		permittedInsecurePackages = [
+			"dotnet-runtime-7.0.20"
+		];
 	};
 
 	# bootloader.
@@ -88,6 +91,14 @@ in
   	services.printing.enable = true;
   	services.printing.drivers = [ pkgs.gutenprint pkgs.hplip ];  # Add specific drivers if needed
   	
+	# Network File Transfer (Windows SMB)
+	services.gvfs.enable = true;
+	services.samba = {
+		enable = true;
+		securityType = "user";
+		openFirewall = true;
+	};
+
   	# Optionally, you can add Avahi to auto-discover network printers
   	services.avahi.enable = true;
   	services.avahi.nssmdns4 = true;
@@ -149,17 +160,17 @@ in
 
 
 	# Manage the virtualisation services
-	# virtualisation = {
-	# 	libvirtd = {
-	# 		enable = true;
-	# 		qemu = {
-	# 			swtpm.enable = true;
-        # 			ovmf.enable = true;
-        # 			ovmf.packages = [ pkgs.OVMFFull.fd ];
-	# 		};
-	# 	};
-	# 	spiceUSBRedirection.enable = true;
-	# };
+	virtualisation = {
+		libvirtd = {
+			enable = true;
+			qemu = {
+				swtpm.enable = true;
+        			ovmf.enable = true;
+        			ovmf.packages = [ pkgs.OVMFFull.fd ];
+			};
+		};
+		spiceUSBRedirection.enable = true;
+	};
 	# hardware.enableRedistributableFirmware = lib.mkDefault true;
   	# services.spice-vdagentd.enable = true;
 

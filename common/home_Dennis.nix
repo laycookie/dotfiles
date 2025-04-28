@@ -43,7 +43,6 @@
 			# blender
 			# aseprite
 			obs-studio
-			vscode
 			obsidian
 			reaper
 			# System
@@ -62,9 +61,8 @@
 			sniffnet
 			localsend
 			brave
-			thunderbird
 			# qbittorrent
-			protonvpn-gui
+			# protonvpn-gui
 			heaptrack
 
 			(renderdoc.override { waylandSupport = true; })
@@ -72,6 +70,7 @@
 			lutris
 			bottles
 			prismlauncher
+			vintagestory
 
 			# === CLI ===
 			neofetch
