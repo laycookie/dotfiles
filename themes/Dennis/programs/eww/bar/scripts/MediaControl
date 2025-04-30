@@ -5,11 +5,21 @@ get_title () {
 }
 
 get_artist () {
-    echo mpc --format "%artist%" current
+	echo $(mpc --format "%artist%" current)
 }
 
 get_cover () {
-	echo "Temp"
+	File=$(mpc --format "%file%" current)
+    	Music_dir="$HOME/Music"
+
+    	Full_path="$Music_dir/$File"
+
+	Temp_file=$(mktemp /dev/shm/cover.XXXXXX)
+	ffmpeg -y -i "$Full_path" -an -f image2pipe -vcodec mjpeg - 2>/dev/null > $Temp_file
+
+	echo $Temp_file
+
+	nohup bash -c "sleep 1; rm '$Temp_file'" >/dev/null 2>&1 &
 }
 
 get_status () {

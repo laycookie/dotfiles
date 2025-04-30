@@ -60,17 +60,18 @@
 ;; Music Control ;;
 (defwidget music []
 	(box :class "mainbars"
-		 :spacing 10
-		 :space-evenly "false"
+		:spacing 10
+		:space-evenly "false"
 
-		 (box :class "album_art"
+		(box :class "album_art"
 			  :valign "center"
 			  :halign "start"
-			  :style "background-image: url('${COVER}');")
+			  :style "background-image: url('${COVER}');"
+		)
 
-		 (eventbox :cursor "pointer"
-		 (button :onclick "OpenApps --player"
-		 (box :orientation "v"
+		(eventbox :cursor "pointer"
+		(button :onclick "OpenApps --player"
+		(box :orientation "v"
 			  :class "song-info"
 			  :spacing 0
 			  :valign "center"
