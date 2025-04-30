@@ -6,16 +6,19 @@
     ./river
     # ./niri
     ./kitty
-    ./rofi
+    ./nushell
+    ./zoxide
+    ./yazi
+    ./nvim
+    # ./rofi
+    ./wofi
     ./waybar
     # ./zsh
-    ./nushell
     ./swaylock
-    ./zoxide
     ./mpd
-    ./nvim
     ./eww
     ./schizofox
     ./mangohud
+    ./cliphist
   ];
 }

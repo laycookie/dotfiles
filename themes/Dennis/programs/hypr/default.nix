@@ -20,8 +20,10 @@
         force_zero_scaling = true
     }
 
-    exec = pkill waybar & sleep 0.5 && waybar
     exec-once = swww init & sleep 0.5 && exec wallpaper_random
+    exec-once = wl-paste --watch cliphist store
+    # exec = pkill waybar & sleep 0.5 && waybar
+    exec = pkill .eww_wrapped & sleep 0.2 && eww daemon && eww open bar
     # exec-once = wallpaper_random
 
     # Set en layout at startup
@@ -103,12 +105,14 @@
 
 
     # Apps shortcuts
-    bind = $mainMod, SPACE, 	exec,	rofi -show drun
+    bind = $mainMod, SPACE, 	exec,	wofi --show drun
+    bind = $mainMod, R, 	exec,	wofi --show run
+    bind = $mainMod, H, 	exec,	cliphist list | wofi -S dmenu | cliphist decode | wl-copy
     bind = $mainMod, M, 	exec,	wlogout
     bind = $mainMod, Q, 	exec,	kitty
-    bind = $mainMod, D, 	exec,	webcord
+    bind = $mainMod, D, 	exec,	discordcanary --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind = $mainMod, S, 	exec,	steam
-    bind = $mainMod, E, 	exec,	dolphin
+    bind = $mainMod, E, 	exec,	yazi
     bind = $mainMod, T, 	exec,	telegram-desktop
     bind = $mainMod, B, 	exec,	firefox	
     bind = $mainMod, C,		killactive,

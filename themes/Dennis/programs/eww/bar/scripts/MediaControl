@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+get_title () {
+    echo $(mpc --format "%title%" current)
+}
+
+get_artist () {
+    echo mpc --format "%artist%" current
+}
+
+get_cover () {
+	echo "Temp"
+}
+
+get_status () {
+    status=$(mpc status | grep -oE "\[playing\]|\[paused\]")
+    echo "${status#[}" | tr -d "]"
+}
+
+case "$1" in
+    --title) get_title ;;
+    --artist) get_artist ;;
+    --cover) get_cover ;;
+    --status) get_status ;;
+esac

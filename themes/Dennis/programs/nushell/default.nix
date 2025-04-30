@@ -4,11 +4,15 @@
 		nushell = { 
   			enable = true;
   		    	configFile.source = ./config.nu;
+			environmentVariables = {
+				EDITOR = "nvim";
+			};
 		};
 		carapace = {
  			enable = true;
 			enableNushellIntegration = true;
 		};
+
 
   		starship = { 
   		 	enable = true;

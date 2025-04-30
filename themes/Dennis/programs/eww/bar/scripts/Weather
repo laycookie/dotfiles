@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+get_temp () {
+    temp=$(weather KLAX -q | awk -F ': ' '/Temperature/ { print $2 }' | awk '{ print $1 "°" $2 }')
+    echo "${temp}"
+}
+
+get_icon () {
+    vol=$(get_vol)
+    echo "images/.png"
+}
+
+case "$1" in
+    --temp) get_temp ;;
+    --icon) get_icon ;;
+esac

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+get_cpu () {
+    cpu=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8 "%"}')
+    echo "${cpu}"
+}
+
+get_ram_total () {
+    read total used <<< $(free -h | awk '/Mem:/ {print $2, $3}' | sed 's/[A-Za-z]//g')
+    echo "${total}Gi"
+}
+get_ram_used () {
+    read total used <<< $(free -h | awk '/Mem:/ {print $2, $3}' | sed 's/[A-Za-z]//g')
+    echo "used: ${used}Gi"
+}
+get_ram_precent () {
+    read total used <<< $(free -h | awk '/Mem:/ {print $2, $3}' | sed 's/[A-Za-z]//g')
+    precent=$(( 100 * used / total ))
+    echo "${precent}%"
+}
+
+case "$1" in
+    --cpu) get_cpu ;;
+    --ram_total) get_ram_total ;;
+    --ram_used) get_ram_used ;;
+    --ram_precent) get_ram_precent ;;
+esac

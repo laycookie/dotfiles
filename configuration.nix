@@ -70,7 +70,6 @@ in
   	  	BROWSER = "schizofox";
   	  	TERMINAL = "kitty";
   	  	TERM = "kitty";
-
   	};
 
 	hardware.bluetooth.enable = true;

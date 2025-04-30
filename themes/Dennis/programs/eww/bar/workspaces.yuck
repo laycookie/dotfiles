@@ -1,0 +1,17 @@
+;; Workspaces ;;
+(deflisten workspace0 "scripts/WorkSpaces DP-1")
+(deflisten workspace1 "scripts/WorkSpaces DP-2")
+
+;; Workspaces Widgets ;;
+(defwidget workspace0 [] (literal :content workspace0))
+(defwidget workspace1 [] (literal :content workspace1))
+
+;; Workspaces Main Widget ;;
+(defwidget workspaces [monitor]
+    (box :halign "center"
+         :spacing 15
+         :space-evenly "false"
+         (box :visible { monitor=="DP-1" } (workspace0))
+         (box :visible { monitor=="DP-2" } (workspace1))
+    )
+)

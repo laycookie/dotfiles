@@ -70,6 +70,7 @@
 			lutris
 			bottles
 			prismlauncher
+			r2modman
 			vintagestory
 
 			# === CLI ===
@@ -78,8 +79,6 @@
 			bat
 			xdg-user-dirs
 			zoxide
-			fzf
-			fd
 			nh
 			gitleaks
 			speedtest-rs
@@ -87,23 +86,31 @@
 			swaynotificationcenter
 			swww
 			cava
-			mpd
 			imagemagick
 			ffmpeg
 			yt-dlp
 			ani-cli
 			brightnessctl
-			r2modman
 			steamcmd
 			steam-tui
 			wineWowPackages.stableFull
 			winetricks
 			ventoy
 
-			# TEMP
+			# System
+			flatpak
 			slurp
 			grim
-			flatpak
+			fzf
+			fd
+			pamixer
+			weather
+			mpc
+			# System/Service
+			wl-clipboard
+
+			# Temp
+			ncmpcpp
 
 			# Themes
 			bibata-cursors
